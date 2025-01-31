@@ -1,0 +1,100 @@
+### health check
+GET http://localhost:5000/health-check HTTP/1.1
+
+
+
+### registration
+POST http://localhost:5000/api/v1/auth/register HTTP/1.1
+Content-Type: application/json
+
+{   
+    "fullname": "Sam Altman",
+    "handle": "sam",
+    "email": "sam@fakemail.com",
+    "password": "1234"
+}
+
+### login
+POST http://localhost:5000/api/v1/auth/login HTTP/1.1
+Content-Type: application/json
+
+{   
+    "email": "elon@fakemail.com",
+    "password": "1234"
+}
+
+### refresh token
+POST http://localhost:5000/api/v1/auth/refresh-token HTTP/1.1
+Content-Type: application/json
+Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OWNhYjZkN2U2MDhlNmU0ZGIzMDU4MyIsImZ1bGxuYW1lIjoiRWxvbiBNdXNrIiwiaGFuZGxlIjoiZWxvbiIsImVtYWlsIjoiZWxvbkBmYWtlbWFpbC5jb20iLCJyb2xlIjoidXNlciIsInR5cGUiOiJyZWZyZXNoIiwiaWF0IjoxNzM4MzI5OTg5LCJleHAiOjE3Mzg0MDkxODksImF1ZCI6IjY3OWNhYjZkN2U2MDhlNmU0ZGIzMDU4MyIsImlzcyI6InNwYXJ0YS5yYWdodWdhbm5hcmFtLmNvbSJ9.e6cU1h4egaudny_syudtpHKp7v3uyk8obASfKM8XO8s
+
+### logout
+DELETE http://localhost:5000/api/v1/auth/logout HTTP/1.1
+Content-Type: application/json
+Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OWNhYjZkN2U2MDhlNmU0ZGIzMDU4MyIsImZ1bGxuYW1lIjoiRWxvbiBNdXNrIiwiaGFuZGxlIjoiZWxvbiIsImVtYWlsIjoiZWxvbkBmYWtlbWFpbC5jb20iLCJyb2xlIjoidXNlciIsInR5cGUiOiJyZWZyZXNoIiwiaWF0IjoxNzM4MzI5OTg5LCJleHAiOjE3Mzg0MDkxODksImF1ZCI6IjY3OWNhYjZkN2U2MDhlNmU0ZGIzMDU4MyIsImlzcyI6InNwYXJ0YS5yYWdodWdhbm5hcmFtLmNvbSJ9.e6cU1h4egaudny_syudtpHKp7v3uyk8obASfKM8XO8s
+
+
+
+
+### all users
+GET http://localhost:5000/api/v1/user/all HTTP/1.1
+
+### user by id
+GET http://localhost:5000/api/v1/user/679cab6d7e608e6e4db30583 HTTP/1.1
+
+### update user
+PUT http://localhost:5000/api/v1/user HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MzdhYTcxNjcxMjI0OTM0YTNjZmM3OCIsImZ1bGxuYW1lIjoiVGVzdCAyIiwiaGFuZGxlIjoidGVzdDIiLCJlbWFpbCI6InRlc3QyQGZha2VtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTcxNDkyNDE0NSwiZXhwIjoxNzE0OTMxMzQ1LCJhdWQiOiI2NjM3YWE3MTY3MTIyNDkzNGEzY2ZjNzgiLCJpc3MiOiJuZXh1cy5yYWdodWdhbm5hcmFtLmNvbSJ9.5jB_7eeRi2tuKgFqvY3NL3fiV0ur3p0kH00ZnlyK5fY
+Content-Type: application/json
+
+{   
+    "userId": "6637aa71671224934a3cfc78",
+    "fullname": "Omi Baba",
+    "bio": "I'm a developer.",
+    "city": "Bangalore",
+    "from": "India",
+    "role": "admin",
+    "handle": "omi"
+}
+
+### follow user
+PUT http://localhost:5000/api/v1/user/follow HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MzdhYTcxNjcxMjI0OTM0YTNjZmM3OCIsImZ1bGxuYW1lIjoiVGVzdCAyIiwiaGFuZGxlIjoidGVzdDIiLCJlbWFpbCI6InRlc3QyQGZha2VtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTcxNDkyNDE0NSwiZXhwIjoxNzE0OTMxMzQ1LCJhdWQiOiI2NjM3YWE3MTY3MTIyNDkzNGEzY2ZjNzgiLCJpc3MiOiJuZXh1cy5yYWdodWdhbm5hcmFtLmNvbSJ9.5jB_7eeRi2tuKgFqvY3NL3fiV0ur3p0kH00ZnlyK5fY
+Content-Type: application/json
+
+{
+    "followeeId": "6637aa5f671224934a3cfc72"
+}
+
+### delete user
+DELETE http://localhost:5000/api/v1/user/663786f35698a901ca3a380a HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Mzc4NmYzNTY5OGE5MDFjYTNhMzgwYSIsImZ1bGxuYW1lIjoiVGVzdCAxIiwiaGFuZGxlIjoidGVzdDIiLCJlbWFpbCI6InRlc3QyQGZha2VtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTcxNDkyMTQzNywiZXhwIjoxNzE0OTI4NjM3LCJhdWQiOiI2NjM3ODZmMzU2OThhOTAxY2EzYTM4MGEiLCJpc3MiOiJuZXh1cy5yYWdodWdhbm5hcmFtLmNvbSJ9.dkYr-cloYZ8_mPIZlW3BY5sb4fMUscFYZnEQUl6SPVo
+
+
+
+
+### get chat
+GET http://localhost:5000/api/v1/chat/679cd2c3232e5bf02f6fce8d HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OWNhYjZkN2U2MDhlNmU0ZGIzMDU4MyIsImZ1bGxuYW1lIjoiRWxvbiBNdXNrIiwiaGFuZGxlIjoiZWxvbiIsImVtYWlsIjoiZWxvbkBmYWtlbWFpbC5jb20iLCJyb2xlIjoidXNlciIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MzgzMjk5ODksImV4cCI6MTczODMzNzE4OSwiYXVkIjoiNjc5Y2FiNmQ3ZTYwOGU2ZTRkYjMwNTgzIiwiaXNzIjoic3BhcnRhLnJhZ2h1Z2FubmFyYW0uY29tIn0._dWTaTnPs9j-Jn-sWL5InQDnGWpC7RMwIeCbB8L_ly0
+
+
+### create chat
+POST http://localhost:5000/api/v1/chat/new HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OWNhYjZkN2U2MDhlNmU0ZGIzMDU4MyIsImZ1bGxuYW1lIjoiRWxvbiBNdXNrIiwiaGFuZGxlIjoiZWxvbiIsImVtYWlsIjoiZWxvbkBmYWtlbWFpbC5jb20iLCJyb2xlIjoidXNlciIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MzgzMjk5ODksImV4cCI6MTczODMzNzE4OSwiYXVkIjoiNjc5Y2FiNmQ3ZTYwOGU2ZTRkYjMwNTgzIiwiaXNzIjoic3BhcnRhLnJhZ2h1Z2FubmFyYW0uY29tIn0._dWTaTnPs9j-Jn-sWL5InQDnGWpC7RMwIeCbB8L_ly0
+Content-Type: application/json
+
+{
+    "prompt": "Write a Bukowski style poem on JavaScript"
+}
+
+
+
+### update chat
+POST http://localhost:5000/api/v1/chat/update HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OWNhYjZkN2U2MDhlNmU0ZGIzMDU4MyIsImZ1bGxuYW1lIjoiRWxvbiBNdXNrIiwiaGFuZGxlIjoiZWxvbiIsImVtYWlsIjoiZWxvbkBmYWtlbWFpbC5jb20iLCJyb2xlIjoidXNlciIsInR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3MzgzMjk5ODksImV4cCI6MTczODMzNzE4OSwiYXVkIjoiNjc5Y2FiNmQ3ZTYwOGU2ZTRkYjMwNTgzIiwiaXNzIjoic3BhcnRhLnJhZ2h1Z2FubmFyYW0uY29tIn0._dWTaTnPs9j-Jn-sWL5InQDnGWpC7RMwIeCbB8L_ly0
+Content-Type: application/json
+
+{   
+    "chatId": "679ce47126277559ab6edca4",
+    "prompt": "Name seven wonders of the world"
+}
