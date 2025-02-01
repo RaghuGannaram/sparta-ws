@@ -25,7 +25,7 @@ const consoleLogFormat = format.printf(({ level, message, timestamp, stack }) =>
 });
 
 const fileLogFormat = format.printf(({ level, message, timestamp }) => {
-    const unColoredMessage = message.replace(/\x1B\[\d+m/g, "");
+    const unColoredMessage = (message as string).replace(/\x1B\[\d+m/g, "");
     const formattedMessage = typeof unColoredMessage === "object" ? util.inspect(unColoredMessage) : unColoredMessage;
 
     return `${timestamp} ${level}: ${formattedMessage}`;
